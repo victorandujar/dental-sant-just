@@ -1,0 +1,14 @@
+---
+import { tratamientos } from '../data/clinica';
+const items = [...tratamientos, ...tratamientos];
+---
+<div class="overflow-hidden border-y border-aigua-fosc bg-aigua py-5 text-white" aria-hidden="true">
+  <div class="cinta flex w-max items-center gap-8 whitespace-nowrap text-[1.35rem] font-medium tracking-tight">
+    {items.map((t) => (
+      <>
+        <span>{t}</span>
+        <svg viewBox="0 0 48 48" class="h-5 w-5 opacity-60" fill="currentColor"><path d="M15 7c-5 0-8 4-8 10 0 7 3 10 4 18 .5 4 2 7 4 7s3-5 4-9c.6-2 2.4-2 3 0 1 4 2 9 4 9s3.5-3 4-7c1-8 4-11 4-18 0-6-3-10-8-10-3 0-4 1.5-6 1.5S18 7 15 7z"/></svg>
+      </>
+    ))}
+  </div>
+</div>

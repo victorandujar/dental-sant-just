@@ -1,19 +1,48 @@
 ---
-import { tratamientos } from '../data/clinica';
+import Icona from './Icona.astro';
+type Nom = 'prevencio' | 'geniva' | 'implant' | 'ortodoncia' | 'estetica' | 'infantil';
+const grups: { icona: Nom; titol: string; items: string[]; text: string; zona: string }[] = [
+  { icona: 'prevencio', titol: 'Revisión y caries', items: ['Odontología preventiva', 'Odontología conservadora', 'Endodoncia'], text: 'Revisiones, limpiezas, empastes y tratamiento de conductos.', zona: 'dolor' },
+  { icona: 'geniva', titol: 'Encías', items: ['Periodoncia', 'Cirugía plástica periodontal'], text: 'Encías que sangran, se inflaman o se retiran.', zona: 'encias' },
+  { icona: 'implant', titol: 'Implantes y prótesis', items: ['Implantología', 'Prótesis dental', 'Cirugía oral y maxilofacial'], text: 'Para reponer una o varias piezas que faltan.', zona: 'falta' },
+  { icona: 'ortodoncia', titol: 'Ortodoncia', items: ['Ortodoncia', 'Ortodoncia invisible'], text: 'Box propio para ortodoncia y cefalometrías.', zona: 'alinear' },
+  { icona: 'estetica', titol: 'Estética dental', items: ['Estética dental', 'Blanqueamiento dental'], text: 'Color, forma y proporción de los dientes.', zona: 'estetica' },
+  { icona: 'infantil', titol: 'Niños', items: ['Odontopediatría'], text: 'Desde los primeros dientes de leche.', zona: 'peques' },
+];
 ---
-<section id="tratamientos" aria-labelledby="trat-t" class="border-y border-linia bg-vidre">
-  <div class="mx-auto grid max-w-[88rem] gap-12 px-4 py-20 sm:px-8 sm:py-24 lg:grid-cols-12">
-    <div class="lg:col-span-4">
-      <h2 id="trat-t" class="serif text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal>Tratamientos</h2>
-      <p class="mt-5 text-lg text-tinta-2" data-reveal style="--i:1">Todas las especialidades en la misma clínica, del primer diente de leche a los implantes.</p>
+<section id="tratamientos" aria-labelledby="trat-t" class="caustica">
+  <div class="mx-auto max-w-[88rem] px-4 py-20 sm:px-8 sm:py-28">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="label text-aigua" data-reveal>Especialidades</p>
+        <h2 id="trat-t" class="serif mt-4 text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">Todo el tratamiento, en la misma clínica.</h2>
+      </div>
+      <p class="text-lg text-tinta-2 lg:col-span-4 lg:col-start-9" data-reveal style="--i:2">Doce especialidades, del primer diente de leche a los implantes. Sin derivarte a otro centro para las pruebas.</p>
     </div>
-    <ol class="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
-      {tratamientos.map((t, i) => (
-        <li class="group flex items-baseline gap-5 border-b border-linia py-4" data-reveal style={`--i:${i % 6}`}>
-          <span class="label w-7 shrink-0 text-tinta-2 transition-colors group-hover:text-aigua">{String(i + 1).padStart(2, '0')}</span>
-          <span class="text-[1.4rem] font-medium leading-tight tracking-tight transition-transform duration-300 group-hover:translate-x-1">{t}</span>
+    <ul class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {grups.map((g, i) => (
+        <li class="carta carta-hover group relative flex flex-col overflow-hidden p-7" data-reveal style={`--i:${i % 3}`}>
+          <span class="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-vidre transition-transform duration-500 group-hover:scale-[1.6]" aria-hidden="true"></span>
+          <span class="relative grid h-16 w-16 place-items-center rounded-2xl bg-vidre text-aigua transition-colors duration-300 group-hover:bg-aigua group-hover:text-white">
+            <Icona nom={g.icona} class="h-10 w-10" />
+          </span>
+          <h3 class="relative mt-6 text-2xl font-semibold tracking-tight">{g.titol}</h3>
+          <p class="relative mt-2 text-tinta-2">{g.text}</p>
+          <ul class="relative mt-5 flex flex-wrap gap-2">
+            {g.items.map((t) => <li class="rounded-full border border-linia bg-blanc px-3 py-1 text-sm">{t}</li>)}
+          </ul>
+          <a href="#que-notas" data-ir={g.zona} class="relative mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-aigua">Ver en el mapa dental <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span></a>
         </li>
       ))}
-    </ol>
+    </ul>
   </div>
 </section>
+
+<script>
+  // Enllaç a la guia: selecciona el símptoma corresponent al mapa dental.
+  document.querySelectorAll<HTMLAnchorElement>('[data-ir]').forEach((a) =>
+    a.addEventListener('click', () => {
+      document.querySelector<HTMLButtonElement>(`[data-guia] [data-sintoma="${a.dataset.ir}"]`)?.click();
+    }),
+  );
+</script>

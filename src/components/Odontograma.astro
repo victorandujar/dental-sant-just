@@ -6,8 +6,8 @@
  */
 import { piezas } from '../data/dientes';
 
-interface Props { id: string; class?: string; numeros?: boolean; dibujar?: boolean }
-const { id, class: cls = '', numeros = true, dibujar = false } = Astro.props;
+interface Props { id: string; class?: string; numeros?: boolean; dibujar?: boolean; ejes?: boolean }
+const { id, class: cls = '', numeros = true, dibujar = false, ejes = true } = Astro.props;
 
 const CX = 220, A = 150, B = 172;
 // Angle (graus des del centre) de cada posició 1..8 dins l'arc
@@ -46,10 +46,12 @@ const arc = (sup: boolean): string => {
   <svg viewBox="0 0 440 600" class:list={['w-full', dibujar && 'is-dibuja']} role="group" aria-label="Odontograma: mapa de las 32 piezas dentales con su número" data-zona="">
     <path class="geniva" d={arc(true)} />
     <path class="geniva" d={arc(false)} />
+    {ejes && <>
     <line x1="40" y1="300" x2="400" y2="300" class="eix" />
     <line x1="220" y1="40" x2="220" y2="560" class="eix" />
     <text x="40" y="292" class="quad">Q1</text><text x="400" y="292" text-anchor="end" class="quad">Q2</text>
     <text x="40" y="318" class="quad">Q4</text><text x="400" y="318" text-anchor="end" class="quad">Q3</text>
+    </>}
     {shapes.map((s) => (
       <g class="pieza" data-fdi={s.fdi} data-tipo={s.tipo} data-pos={s.pos} data-nombre={s.nombre} tabindex="0" role="img" aria-label={`Pieza ${s.fdi}: ${s.nombre}`} style={`--d:${(s.pos - 1) * 70 + (s.q - 1) * 25}ms`}>
         <rect x={s.x - s.w / 2} y={s.y - s.h / 2} width={s.w} height={s.h} rx={s.rx} transform={`rotate(${s.rot} ${s.x} ${s.y})`} pathLength="1" />

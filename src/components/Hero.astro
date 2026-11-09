@@ -1,44 +1,58 @@
 ---
+import { Image } from 'astro:assets';
 import Odontograma from './Odontograma.astro';
+import sala from '../assets/clinica/sala-espera.jpg';
 import { clinica, telUrl } from '../data/clinica';
 ---
-<section aria-labelledby="hero-t" class="relative overflow-hidden">
-  <div class="pointer-events-none absolute right-[-8rem] top-10 hidden h-[44rem] w-[44rem] rounded-full bg-vidre lg:block" aria-hidden="true"></div>
-  <div class="relative mx-auto grid max-w-[88rem] items-center gap-10 px-4 pb-24 pt-12 sm:px-8 md:pb-16 lg:grid-cols-12 lg:pt-16">
-    <div class="lg:col-span-6">
-      <p class="label text-aigua" data-reveal>Clínica dental · Sant Just Desvern · desde {clinica.since}</p>
-      <h1 id="hero-t" class="serif mt-6 text-[clamp(3rem,6.6vw,6rem)]" data-reveal style="--i:1">
-        32 piezas.<br />Una clínica que las conoce desde 1990.
+<section aria-labelledby="hero-t" class="caustica relative overflow-hidden">
+  <div class="relative mx-auto grid max-w-[88rem] items-center gap-12 px-4 pb-24 pt-12 sm:px-8 md:pb-20 lg:grid-cols-12 lg:pt-16">
+    <div class="lg:col-span-5">
+      <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-aigua shadow-sm backdrop-blur" data-reveal>
+        <span class="h-2 w-2 rounded-full bg-[#2fb37a]" aria-hidden="true"></span>Clínica dental en Sant Just Desvern
+      </p>
+      <h1 id="hero-t" class="serif mt-7 text-[clamp(2.7rem,5vw,4.6rem)]" data-reveal style="--i:1">
+        Tu dentista en Sant Just, <span class="text-aigua">en la misma calle desde 1990.</span>
       </h1>
-      <p class="mt-7 max-w-lg text-lg text-tinta-2" data-reveal style="--i:2">
-        En la calle Marquès de Monistrol, con cuatro boxes con radiología digital y las pruebas hechas aquí mismo, sin ir a otro centro. Dirige el Dr. Carles Gargallo.
+      <p class="mt-7 max-w-md text-lg text-tinta-2" data-reveal style="--i:2">
+        Cuatro boxes con radiología digital y todas las pruebas en la propia clínica. La dirige el Dr. Carles Gargallo.
       </p>
       <div class="mt-9 flex flex-wrap gap-3" data-reveal style="--i:3">
-        <a href="#contacto" class="btn btn-vermell">Pedir cita</a>
-        <a href={telUrl} class="btn btn-line tabular-nums">{clinica.phone.display}</a>
+        <a href="#contacto" class="btn btn-vermell px-7 shadow-[0_14px_30px_-12px_rgb(15_107_133/0.7)]">Pedir cita</a>
+        <a href={telUrl} class="btn btn-line bg-white/60 tabular-nums backdrop-blur">{clinica.phone.display}</a>
       </div>
+      <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-tinta-2" data-reveal style="--i:4">
+        {clinica.mutues.slice(0, 4).map((m) => <li class="flex items-center gap-2"><span class="text-aigua" aria-hidden="true">✓</span>{m}</li>)}
+        <li class="text-tinta-2/80">y más mutuas</li>
+      </ul>
     </div>
 
-    <div class="relative lg:col-span-6">
-      <div class="grid items-center gap-6 sm:grid-cols-[1fr_11rem] lg:grid-cols-[1fr_12rem]">
-        <Odontograma id="hero" dibujar class="mx-auto w-full max-w-[17rem] sm:max-w-[25rem]" />
-        <!-- Lector: número FDI i nom de la peça -->
-        <div class="border-t border-vidre-2 pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0" data-lectura="hero" aria-live="polite">
-          <p class="label text-tinta-2">Pieza</p>
-          <div class="flex items-end gap-5 sm:block"><p class="text-[3.5rem] font-semibold leading-none tracking-tight text-aigua tabular-nums sm:text-[4.5rem]" data-num>—</p>
-          <p class="min-h-[3em] text-[0.95rem] leading-snug sm:mt-3" data-nom>Pasa el ratón o toca un diente.</p></div>
-          <p class="label mt-4 text-tinta-2 sm:mt-6">Numeración FDI</p>
+    <!-- Composició: foto de la clínica + targetes flotants + odontograma -->
+    <div class="relative pb-4 sm:pb-0 lg:col-span-7">
+      <div class="relative ml-auto aspect-[5/4] w-full max-w-[40rem] overflow-hidden rounded-[36px] shadow-[0_40px_80px_-40px_rgb(18_48_59/0.55)]" data-reveal style="--i:1">
+        <Image src={sala} alt="Sala de espera luminosa de la clínica, con sillones blancos y negros y una planta" widths={[480, 650]} sizes="(min-width: 1024px) 40rem, 92vw" class="h-full w-full scale-105 object-cover" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#0b3442]/35 via-transparent to-transparent" aria-hidden="true"></div>
+      </div>
+
+      <div class="carta flota absolute -left-2 top-6 hidden items-center gap-3 px-5 py-4 sm:flex lg:-left-10" data-reveal style="--i:3">
+        <span class="text-3xl font-semibold text-tinta">{clinica.google.rating}</span>
+        <span class="text-sm leading-tight"><span class="text-[#f2a20c]" aria-hidden="true">★★★★★</span><br /><span class="text-tinta-2">{clinica.google.count} reseñas en Google</span></span>
+      </div>
+
+      <div class="carta flota-2 relative z-10 mx-auto -mt-28 w-[15rem] p-4 sm:absolute sm:bottom-[-2.5rem] sm:left-6 sm:mx-0 sm:mt-0 lg:-left-16 lg:w-[18rem]" data-reveal style="--i:4">
+        <div class="flex items-start justify-between gap-2">
+          <p class="label text-tinta-2">Mapa dental</p>
+          <p class="text-right leading-none" data-lectura="hero" aria-live="polite"><span class="text-2xl font-semibold text-aigua tabular-nums" data-num>—</span><br /><span class="text-[0.7rem] text-tinta-2" data-nom></span></p>
         </div>
+        <Odontograma id="hero" dibujar numeros={false} ejes={false} class="mx-auto mt-1 w-full max-w-[10rem] sm:max-w-[13rem]" />
+      </div>
+
+      <div class="carta flota absolute -right-2 top-1/2 hidden px-5 py-4 md:block lg:right-[-1.5rem]" data-reveal style="--i:5">
+        <p class="label text-tinta-2">Desde</p>
+        <p class="text-4xl font-semibold tracking-tight text-tinta">{clinica.since}</p>
+        <p class="mt-1 text-sm text-aigua">Certificado DentalQuality</p>
       </div>
     </div>
   </div>
-
-  <dl class="relative mx-auto grid max-w-[88rem] grid-cols-2 border-y border-linia bg-blanc px-4 sm:px-8 lg:grid-cols-4" data-reveal>
-    <div class="border-r border-linia py-6 pr-4"><dt class="label text-tinta-2">Abierta en</dt><dd class="serif mt-1 text-4xl">{clinica.since}</dd></div>
-    <div class="py-6 pl-4 lg:border-r lg:border-linia lg:pr-4"><dt class="label text-tinta-2">Boxes con radiología digital</dt><dd class="serif mt-1 text-4xl">{clinica.boxes}</dd></div>
-    <div class="border-r border-t border-linia py-6 pr-4 lg:border-t-0 lg:pl-4"><dt class="label text-tinta-2">Google</dt><dd class="serif mt-1 text-4xl">{clinica.google.rating} <span class="font-sans text-sm font-normal text-tinta-2">· {clinica.google.count} reseñas</span></dd></div>
-    <div class="border-t border-linia py-6 pl-4 lg:border-t-0"><dt class="label text-tinta-2">Certificado</dt><dd class="serif mt-1 text-4xl">DentalQuality</dd></div>
-  </dl>
 </section>
 
 <script>

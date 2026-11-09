@@ -3,27 +3,39 @@ import { Image } from 'astro:assets';
 import box from '../assets/clinica/box.jpg';
 import passadis from '../assets/clinica/passadis.jpg';
 import sala from '../assets/clinica/sala-espera.jpg';
-const obres = [
-  { img: box, titol: 'Box de tratamiento', text: 'Uno de los cuatro boxes, todos con radiología digital.', alt: 'Box dental con sillón blanco y un cuadro rojo en la pared', cls: 'lg:col-span-7' },
-  { img: passadis, titol: 'El pasillo', text: 'Suelo de cristal sobre cantos blancos.', alt: 'Pasillo de la clínica con suelo de cristal sobre piedras blancas', cls: 'lg:col-span-5 lg:mt-32' },
-  { img: sala, titol: 'Sala de espera', text: 'Luz natural y espacio para esperar tranquilo.', alt: 'Sala de espera con sillones y una planta', cls: 'lg:col-span-5 lg:col-start-3' },
-];
+import { clinica } from '../data/clinica';
 ---
-<section id="clinica" aria-labelledby="clinica-t">
+<section id="clinica" aria-labelledby="clinica-t" class="bg-[#0b3442] text-white">
   <div class="mx-auto max-w-[88rem] px-4 py-20 sm:px-8 sm:py-28">
-    <div class="grid gap-6 lg:grid-cols-12">
-      <h2 id="clinica-t" class="serif text-[clamp(2.6rem,5.5vw,4.5rem)] lg:col-span-6" data-reveal>La clínica</h2>
-      <div class="text-lg text-tinta-2 lg:col-span-5 lg:col-start-8 lg:pt-4" data-reveal style="--i:1">
-        <p>Cuatro boxes con radiología digital y otro box para ortodoncia y cefalometrías. Las pruebas se hacen aquí mismo: no tendrás que ir a otro centro.</p>
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="label text-[#8fd3e3]" data-reveal>La clínica</p>
+        <h2 id="clinica-t" class="serif mt-4 text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">Las pruebas, aquí mismo.</h2>
       </div>
+      <p class="text-lg text-white/75 lg:col-span-4 lg:col-start-9" data-reveal style="--i:2">Cuatro boxes con radiología digital y otro para ortodoncia y cefalometrías. No tendrás que ir a otro centro a hacerte las pruebas.</p>
     </div>
-    <div class="mt-16 grid gap-14 lg:grid-cols-12 lg:gap-x-10">
-      {obres.map((o, i) => (
-        <figure class={o.cls} data-reveal style={`--i:${i}`}>
-          <div class="marc"><Image src={o.img} alt={o.alt} widths={[480, 650]} sizes="(min-width: 1024px) 40vw, 92vw" class="aspect-[4/3] w-full object-cover" loading="lazy" /></div>
-          <figcaption class="cartela mt-4 flex gap-3"><span class="mt-[0.45em] h-px w-6 shrink-0 bg-tinta-2"></span><span><strong class="font-semibold text-tinta">{o.titol}.</strong> {o.text}</span></figcaption>
-        </figure>
-      ))}
+
+    <div class="mt-14 grid auto-rows-[minmax(11rem,auto)] gap-4 md:grid-cols-6 lg:auto-rows-[13rem]">
+      <figure class="group relative overflow-hidden rounded-[28px] md:col-span-4 md:row-span-2" data-reveal>
+        <Image src={box} alt="Box dental con sillón blanco y un cuadro rojo en la pared" widths={[480, 650]} sizes="(min-width: 768px) 60vw, 92vw" class="h-full min-h-[18rem] w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <figcaption class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-tinta backdrop-blur">Box de tratamiento</figcaption>
+      </figure>
+      <div class="flex flex-col justify-between rounded-[28px] bg-aigua p-7 md:col-span-2" data-reveal style="--i:1">
+        <p class="text-6xl font-semibold tracking-[-0.05em]">{clinica.boxes}</p>
+        <p class="text-lg leading-snug">boxes, todos con radiología digital</p>
+      </div>
+      <div class="flex flex-col justify-between rounded-[28px] bg-white p-7 text-tinta md:col-span-2" data-reveal style="--i:2">
+        <svg viewBox="0 0 48 48" class="h-10 w-10 text-aigua" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="9" width="36" height="30" rx="5" /><path d="M14 31c3-8 6-12 10-12s7 4 10 12" /><path d="M6 17h36" /></svg>
+        <p class="text-lg leading-snug">Box propio para ortodoncia y cefalometrías</p>
+      </div>
+      <figure class="group relative overflow-hidden rounded-[28px] md:col-span-3 md:row-span-2" data-reveal style="--i:1">
+        <Image src={passadis} alt="Pasillo de la clínica con suelo de cristal sobre piedras blancas" widths={[480, 650]} sizes="(min-width: 768px) 45vw, 92vw" class="h-full min-h-[18rem] w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <figcaption class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-tinta backdrop-blur">Suelo de cristal sobre cantos blancos</figcaption>
+      </figure>
+      <figure class="group relative overflow-hidden rounded-[28px] md:col-span-3 md:row-span-2" data-reveal style="--i:2">
+        <Image src={sala} alt="Sala de espera con sillones y una planta" widths={[480, 650]} sizes="(min-width: 768px) 45vw, 92vw" class="h-full min-h-[18rem] w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <figcaption class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-tinta backdrop-blur">Sala de espera</figcaption>
+      </figure>
     </div>
   </div>
 </section>
