@@ -1,23 +1,25 @@
 @import "tailwindcss";
 @import "@fontsource-variable/schibsted-grotesk/wght.css";
-@import "@fontsource-variable/spline-sans-mono/wght.css";
 
 /* ——— Dental Clinic Sant Just · "Odontograma" ———
    Llenguatge clínic: el mapa de les 32 peces amb la numeració FDI que fan servir
    els dentistes. Blanc fred, verd aigua del vidre del terra de la clínica, tinta
    i el vermell del quadre del box com a senyal (no com a decoració). */
 @theme {
-  --color-blanc: #f7f9f8;
-  --color-vidre: #e3eeeb;      /* vidre del terra */
-  --color-vidre-2: #c9ddd8;
-  --color-linia: #d6e0dd;
-  --color-tinta: #14201e;
-  --color-tinta-2: #4a5a57;    /* AA sobre blanc */
-  --color-aigua: #2f6f66;      /* AA amb blanc */
-  --color-vermell: #c01e12;    /* quadre de la consulta */
+  /* Blanc clínic i blaus d'aigua: llum, neteja i calma */
+  --color-blanc: #f9fcfd;
+  --color-vidre: #e8f4f7;      /* aigua clara */
+  --color-vidre-2: #cfe6ec;
+  --color-linia: #dbe8ec;
+  --color-tinta: #12303b;      /* blau tinta (text) */
+  --color-tinta-2: #4b6470;    /* AA sobre blanc */
+  --color-aigua: #0f6b85;      /* blau principal, AA amb blanc */
+  --color-aigua-fosc: #0b5368;
+  --color-vermell: #0f6b85;    /* senyal = blau principal (sense vermell) */
+  --color-geniva: #f4d5d2;     /* geniva (odontograma) */
 
   --font-sans: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Spline Sans Mono Variable", ui-monospace, monospace;
+  --font-mono: "Schibsted Grotesk Variable", ui-sans-serif, sans-serif;
 }
 
 @layer base {
@@ -27,20 +29,21 @@
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   }
   body { background: var(--color-blanc); color: var(--color-tinta); font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  ::selection { background: var(--color-aigua); color: #fff; }
-  :focus-visible { outline: 2px solid var(--color-vermell); outline-offset: 3px; }
+  ::selection { background: var(--color-vidre-2); color: var(--color-tinta); }
+  :focus-visible { outline: 3px solid var(--color-aigua); outline-offset: 3px; }
 }
 
 @layer components {
   /* Titulars: grotesca compacta, sense cursives ni serifes decoratives */
-  .serif { font-family: var(--font-sans); font-weight: 650; letter-spacing: -0.035em; line-height: 0.98; }
-  .label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .serif { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; }
+  .label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
   .mono { font-family: var(--font-mono); }
-  .marc { background: #fff; padding: 10px; border: 1px solid var(--color-linia); }
+  .marc { background: #fff; padding: 10px; border-radius: 22px; box-shadow: 0 20px 50px -30px rgb(18 48 59 / 0.35); }
+  .marc img { border-radius: 14px; }
   .cartela { font-size: 0.8125rem; line-height: 1.45; color: var(--color-tinta-2); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.75rem 1.4rem; border-radius: 6px; font-weight: 600; transition: background-color 180ms, color 180ms; }
-  .btn-vermell { background: var(--color-tinta); color: #fff; }
-  .btn-vermell:hover { background: var(--color-aigua); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; transition: background-color 180ms, color 180ms; }
+  .btn-vermell { background: var(--color-aigua); color: #fff; }
+  .btn-vermell:hover { background: var(--color-aigua-fosc); }
   .btn-line { box-shadow: inset 0 0 0 1.5px currentColor; }
   .btn-line:hover { background: var(--color-tinta); color: var(--color-blanc); box-shadow: none; }
   .quadricula { background-image: linear-gradient(to right, var(--color-linia) 1px, transparent 1px), linear-gradient(to bottom, var(--color-linia) 1px, transparent 1px); background-size: 28px 28px; }

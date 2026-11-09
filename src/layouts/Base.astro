@@ -15,7 +15,7 @@ const { title, description, schema = false } = Astro.props;
     <meta charset="utf-8" />
     <script is:inline>document.documentElement.classList.add('js')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f9f8" />
+    <meta name="theme-color" content="#f9fcfd" />
     <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -25,7 +25,7 @@ const { title, description, schema = false } = Astro.props;
   <body class="min-h-dvh">
     <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:bg-tinta focus:px-4 focus:py-2 focus:text-white">Saltar al contenido</a>
     {isDemo && (
-      <aside aria-label="Aviso de propuesta" class="relative z-50 bg-tinta text-blanc/80">
+      <aside aria-label="Aviso de propuesta" class="relative z-50 bg-vidre text-tinta-2">
         <p class="label mx-auto flex max-w-[88rem] flex-wrap items-center justify-center gap-x-3 px-4 py-2 text-center text-[0.68rem]"><span>Propuesta de diseño no oficial</span><span aria-hidden="true">·</span><span class="hidden sm:inline">Preparada por Web Local Growth para {clinica.name}</span><span class="sm:hidden">Web Local Growth</span></p>
       </aside>
     )}
