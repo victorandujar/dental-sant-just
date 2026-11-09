@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import box from '../assets/clinica/box.jpg';
+import passadis from '../assets/clinica/passadis.jpg';
+import sala from '../assets/clinica/sala-espera.jpg';
+const obres = [
+  { img: box, titol: 'Box de tratamiento', text: 'Uno de los cuatro boxes, todos con radiología digital.', alt: 'Box dental con sillón blanco y un cuadro rojo en la pared', cls: 'lg:col-span-7' },
+  { img: passadis, titol: 'El pasillo', text: 'Suelo de cristal sobre cantos blancos.', alt: 'Pasillo de la clínica con suelo de cristal sobre piedras blancas', cls: 'lg:col-span-5 lg:mt-32' },
+  { img: sala, titol: 'Sala de espera', text: 'Luz natural y espacio para esperar tranquilo.', alt: 'Sala de espera con sillones y una planta', cls: 'lg:col-span-5 lg:col-start-3' },
+];
+---
+<section id="clinica" aria-labelledby="clinica-t">
+  <div class="mx-auto max-w-[88rem] px-4 py-20 sm:px-8 sm:py-28">
+    <div class="grid gap-6 lg:grid-cols-12">
+      <h2 id="clinica-t" class="serif text-[clamp(2.6rem,5.5vw,4.5rem)] lg:col-span-6" data-reveal>La clínica</h2>
+      <div class="text-lg text-tinta-2 lg:col-span-5 lg:col-start-8 lg:pt-4" data-reveal style="--i:1">
+        <p>Cuatro boxes con radiología digital y otro box para ortodoncia y cefalometrías. Las pruebas se hacen aquí mismo: no tendrás que ir a otro centro.</p>
+      </div>
+    </div>
+    <div class="mt-16 grid gap-14 lg:grid-cols-12 lg:gap-x-10">
+      {obres.map((o, i) => (
+        <figure class={o.cls} data-reveal style={`--i:${i}`}>
+          <div class="marc"><Image src={o.img} alt={o.alt} widths={[480, 650]} sizes="(min-width: 1024px) 40vw, 92vw" class="aspect-[4/3] w-full object-cover" loading="lazy" /></div>
+          <figcaption class="cartela mt-4 flex gap-3"><span class="mt-[0.45em] h-px w-6 shrink-0 bg-tinta-2"></span><span><strong class="font-semibold text-tinta">{o.titol}.</strong> {o.text}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
