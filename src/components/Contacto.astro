@@ -7,9 +7,9 @@ const field = 'mt-2 w-full border-0 border-b border-blanc/35 bg-transparent px-0
     <div class="lg:col-span-5">
       <h2 id="contacto-t" class="serif text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal>Pide cita</h2>
       <p class="mt-5 max-w-sm text-lg text-blanc/75" data-reveal style="--i:1">La forma más rápida es llamar. Si lo prefieres, déjanos tus datos y te llamamos nosotros.</p>
-      <a href={telUrl} class="serif mt-10 inline-block text-[clamp(2.6rem,5vw,3.8rem)] tabular-nums hover:text-[#ff8a7f]" data-reveal style="--i:2">{clinica.phone.display}</a>
+      <a href={telUrl} class="serif mt-10 inline-block text-[clamp(2.6rem,5vw,3.8rem)] tabular-nums hover:text-vidre-2" data-reveal style="--i:2">{clinica.phone.display}</a>
       <dl class="mt-10 grid gap-6 border-t border-blanc/15 pt-8" data-reveal style="--i:3">
-        <div><dt class="label text-blanc/60">Dirección</dt><dd class="mt-1">{clinica.street}<br />{clinica.postalCode} {clinica.city} · <a href={mapsUrl} rel="noopener" target="_blank" class="underline underline-offset-4 hover:text-[#ff8a7f]">Cómo llegar</a></dd></div>
+        <div><dt class="label text-blanc/60">Dirección</dt><dd class="mt-1">{clinica.street}<br />{clinica.postalCode} {clinica.city} · <a href={mapsUrl} rel="noopener" target="_blank" class="underline underline-offset-4 hover:text-vidre-2">Cómo llegar</a></dd></div>
       </dl>
     </div>
 
@@ -21,8 +21,8 @@ const field = 'mt-2 w-full border-0 border-b border-blanc/35 bg-transparent px-0
       <div><label for="motivo" class="label text-blanc/60">Motivo <span class="text-blanc/40">(opcional)</span></label><textarea id="motivo" name="motivo" rows="3" maxlength="500" placeholder="Revisión, una molestia, segunda opinión…" class:list={[field, 'resize-y']}></textarea></div>
       <label class="flex items-start gap-3 text-sm text-blanc/75"><input type="checkbox" name="acepto" class="mt-1 h-4 w-4 accent-[#c01e12]" aria-describedby="err-acepto" /><span>Acepto que la clínica use estos datos solo para llamarme y darme cita. <a href="/privacidad" class="underline underline-offset-2">Privacidad</a></span></label>
       <p id="err-acepto" class="-mt-4 min-h-5 text-sm text-[#ff8a7f]" aria-live="polite"></p>
-      <div><button type="submit" class="btn btn-vermell">Quiero que me llamen</button></div>
-      <p class="hidden border-l-2 border-vermell pl-4 text-blanc/85" data-ok role="status"></p>
+      <div><button type="submit" class="btn bg-blanc text-tinta hover:bg-vidre">Quiero que me llamen</button></div>
+      <p class="hidden border-l-2 border-vidre-2 pl-4 text-blanc/85" data-ok role="status"></p>
     </form>
   </div>
 </section>

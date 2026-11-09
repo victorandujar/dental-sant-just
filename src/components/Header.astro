@@ -11,8 +11,8 @@ const links = [
 <header class="sticky top-0 z-40 border-b border-linia bg-blanc/90 backdrop-blur">
   <div class="mx-auto flex h-16 max-w-[88rem] items-center justify-between gap-6 px-4 sm:px-8">
     <a href="/" class="flex items-baseline gap-3">
-      <span class="inline-block h-3 w-3 translate-y-[-1px] bg-vermell" aria-hidden="true"></span>
-      <span class="serif text-[1.55rem] leading-none">Dental Clinic <em>Sant Just</em></span>
+      <span class="mono rounded-[3px] bg-tinta px-1.5 py-0.5 text-[0.8rem] font-semibold text-white" aria-hidden="true">11·21</span>
+      <span class="whitespace-nowrap text-[1rem] font-semibold leading-none tracking-tight sm:text-[1.15rem]">Dental Clinic Sant Just</span>
       <span class="sr-only">(inicio)</span>
     </a>
     <nav aria-label="Principal" class="hidden xl:block">
@@ -22,7 +22,7 @@ const links = [
     </nav>
     <div class="flex items-center gap-4">
       <a href={telUrl} class="hidden font-semibold tabular-nums md:inline">{clinica.phone.display}</a>
-      <a href="#contacto" class="btn btn-vermell min-h-10 py-2">Pedir cita</a>
+      <a href="#contacto" class="btn btn-vermell hidden min-h-10 whitespace-nowrap py-2 sm:inline-flex">Pedir cita</a>
     </div>
   </div>
 </header>

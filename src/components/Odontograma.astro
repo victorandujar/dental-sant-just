@@ -1,0 +1,97 @@
+---
+/**
+ * Odontograma oclusal (vista des de dalt) amb les 32 peces i la numeració FDI.
+ * Cada peça és enfocable; en passar-hi per sobre o enfocar-la es mostra el seu nom
+ * (Odontograma.ts). Les zones de la guia s'il·luminen amb l'atribut data-zona.
+ */
+import { piezas } from '../data/dientes';
+
+interface Props { id: string; class?: string; numeros?: boolean; dibujar?: boolean }
+const { id, class: cls = '', numeros = true, dibujar = false } = Astro.props;
+
+const CX = 220, A = 150, B = 172;
+// Angle (graus des del centre) de cada posició 1..8 dins l'arc
+const ANG = [6, 18, 30, 41, 52, 63.5, 75, 87];
+const MIDA: Record<string, [number, number]> = { incisivo: [22, 13], canino: [19, 19], premolar: [20, 21], molar: [27, 27] };
+const lateralW = 18;
+
+const shapes = piezas.map((p, idx) => {
+  const sup = p.q === 1 || p.q === 2;
+  const dretaPacient = p.q === 1 || p.q === 4; // dreta del pacient = esquerra de la pantalla
+  const th = (ANG[p.pos - 1]! * Math.PI) / 180 * (dretaPacient ? -1 : 1);
+  const x = CX + A * Math.sin(th);
+  const y = sup ? 40 + B * (1 - Math.cos(th)) : 560 - B * (1 - Math.cos(th));
+  const [w0, h] = MIDA[p.tipo]!;
+  const w = p.pos === 2 ? lateralW : w0;
+  const rot = (th * 180) / Math.PI * (sup ? 1 : -1);
+  const rx = p.tipo === 'molar' ? 6 : p.tipo === 'premolar' ? 7 : p.tipo === 'canino' ? 7.5 : 4;
+  // Número a fora de l'arc
+  const out = 30;
+  const nx = CX + (A + out) * Math.sin(th);
+  const ny = sup ? 40 + (B + out) * (1 - Math.cos(th)) - out * Math.cos(th) : 560 - (B + out) * (1 - Math.cos(th)) + out * Math.cos(th);
+  return { ...p, x, y, w, h, rot, rx, nx, ny, idx };
+});
+// Línia de geniva (arc) per a la zona "encías"
+const arc = (sup: boolean): string => {
+  const pts = Array.from({ length: 49 }, (_, k) => {
+    const th = ((-88 + (176 * k) / 48) * Math.PI) / 180;
+    const x = CX + (A - 2) * Math.sin(th);
+    const y = sup ? 40 + (B - 2) * (1 - Math.cos(th)) : 560 - (B - 2) * (1 - Math.cos(th));
+    return `${x.toFixed(1)} ${y.toFixed(1)}`;
+  });
+  return `M${pts.join(' L')}`;
+};
+---
+<div class:list={['odonto relative', cls]} data-odonto={id}>
+  <svg viewBox="0 0 440 600" class:list={['w-full', dibujar && 'is-dibuja']} role="group" aria-label="Odontograma: mapa de las 32 piezas dentales con su número" data-zona="">
+    <path class="geniva" d={arc(true)} />
+    <path class="geniva" d={arc(false)} />
+    <line x1="40" y1="300" x2="400" y2="300" class="eix" />
+    <line x1="220" y1="40" x2="220" y2="560" class="eix" />
+    <text x="40" y="292" class="quad">Q1</text><text x="400" y="292" text-anchor="end" class="quad">Q2</text>
+    <text x="40" y="318" class="quad">Q4</text><text x="400" y="318" text-anchor="end" class="quad">Q3</text>
+    {shapes.map((s) => (
+      <g class="pieza" data-fdi={s.fdi} data-tipo={s.tipo} data-pos={s.pos} data-nombre={s.nombre} tabindex="0" role="img" aria-label={`Pieza ${s.fdi}: ${s.nombre}`} style={`--d:${(s.pos - 1) * 70 + (s.q - 1) * 25}ms`}>
+        <rect x={s.x - s.w / 2} y={s.y - s.h / 2} width={s.w} height={s.h} rx={s.rx} transform={`rotate(${s.rot} ${s.x} ${s.y})`} pathLength="1" />
+        {numeros && <text x={s.nx} y={s.ny} text-anchor="middle" dominant-baseline="middle" class="num">{s.fdi}</text>}
+      </g>
+    ))}
+  </svg>
+</div>
+
+<style>
+  .odonto svg { overflow: visible; }
+  .odonto .geniva { fill: none; stroke: var(--color-vidre-2); stroke-width: 46; stroke-linecap: round; transition: stroke 400ms; }
+  .odonto .eix { stroke: var(--color-linia); stroke-width: 1; stroke-dasharray: 3 5; }
+  .odonto .quad { font: 500 10px var(--font-mono); fill: var(--color-tinta-2); letter-spacing: 0.08em; }
+  .odonto .pieza { cursor: pointer; outline: none; }
+  .odonto .pieza rect { fill: #fff; stroke: var(--color-tinta); stroke-width: 1.4; transition: fill 250ms, stroke 250ms, transform 250ms; }
+  .odonto .pieza .num { font: 500 11px var(--font-mono); fill: var(--color-tinta-2); transition: fill 250ms; }
+  .odonto .pieza:hover rect, .odonto .pieza:focus-visible rect, .odonto .pieza.is-on rect { fill: var(--color-tinta); stroke: var(--color-tinta); }
+  .odonto .pieza:hover .num, .odonto .pieza:focus-visible .num, .odonto .pieza.is-on .num { fill: var(--color-tinta); font-weight: 700; }
+
+  /* Dibuix inicial, peça a peça */
+  .odonto .is-dibuja .pieza rect { stroke-dasharray: 1; stroke-dashoffset: 1; fill-opacity: 0; animation: traç 900ms cubic-bezier(.6,.1,.2,1) forwards, ompli 400ms forwards; animation-delay: var(--d), calc(var(--d) + 700ms); }
+  .odonto .is-dibuja .pieza .num { opacity: 0; animation: ompli 400ms forwards; animation-delay: calc(var(--d) + 500ms); }
+  @keyframes traç { to { stroke-dashoffset: 0; } }
+  @keyframes ompli { to { fill-opacity: 1; opacity: 1; } }
+
+  /* Zones de la guia */
+  .odonto [data-zona]:not([data-zona='']) .pieza rect { stroke: var(--color-vidre-2); }
+  .odonto [data-zona]:not([data-zona='']) .pieza .num { fill: var(--color-vidre-2); }
+  .odonto [data-zona='molar'] [data-tipo='molar'].pieza rect,
+  .odonto [data-zona='frontal'] [data-tipo='incisivo'].pieza rect,
+  .odonto [data-zona='frontal'] [data-tipo='canino'].pieza rect,
+  .odonto [data-zona='infantil'] .pieza.pieza:not([data-pos='6']):not([data-pos='7']):not([data-pos='8']) rect { fill: var(--color-vermell); stroke: var(--color-vermell); }
+  .odonto [data-zona='molar'] [data-tipo='molar'].pieza .num,
+  .odonto [data-zona='frontal'] [data-tipo='incisivo'].pieza .num,
+  .odonto [data-zona='frontal'] [data-tipo='canino'].pieza .num,
+  .odonto [data-zona='infantil'] .pieza.pieza:not([data-pos='6']):not([data-pos='7']):not([data-pos='8']) .num,
+  .odonto [data-zona='falta'] [data-fdi='36'].pieza .num { fill: var(--color-vermell); font-weight: 700; }
+  .odonto [data-zona='falta'] [data-fdi='36'].pieza rect { fill: #fff; stroke: var(--color-vermell); stroke-width: 2.4; stroke-dasharray: 0.04 0.035; }
+  .odonto [data-zona='encia'] .geniva { stroke: #f0b8b1; }
+  .odonto [data-zona='encia'] .pieza rect { stroke: var(--color-tinta-2); }
+  @media (prefers-reduced-motion: reduce) {
+    .odonto .is-dibuja .pieza rect, .odonto .is-dibuja .pieza .num { animation: none; stroke-dashoffset: 0; fill-opacity: 1; opacity: 1; }
+  }
+</style>
