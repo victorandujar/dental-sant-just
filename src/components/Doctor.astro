@@ -13,13 +13,13 @@ const d = clinica.director;
       <figcaption class="cartela mt-4 max-w-sm"><strong class="font-semibold text-tinta">{d.name}</strong><br />{d.cargo} · Nº de colegiado {d.colegiado}</figcaption>
     </figure>
     <div class="lg:col-span-7 lg:col-start-6">
-      <p class="label text-vermell" data-reveal>El doctor</p>
+      <p class="label text-aigua" data-reveal>El doctor</p>
       <h2 id="doctor-t" class="serif mt-5 text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">El doctor que dirige la clínica.</h2>
       <p class="mt-6 max-w-xl text-lg text-tinta-2" data-reveal style="--i:2">El Dr. Gargallo tiene formación en varias especialidades de la odontología, con especial dedicación a la estética dental, los implantes y la cirugía de las encías. Atiende en castellano, catalán e inglés.</p>
       <ol class="mt-10 border-t border-linia">
         {d.formacion.map((f, i) => (
           <li class="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-linia py-4" data-reveal style={`--i:${i}`}>
-            <span class="serif text-xl text-vermell">{String(i + 1).padStart(2, '0')}</span>
+            <span class="serif text-xl text-aigua">{String(i + 1).padStart(2, '0')}</span>
             <span>{f}</span>
           </li>
         ))}

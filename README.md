@@ -9,23 +9,26 @@
 | **Alcance** | Página única: portada, guía "¿Qué notas?", doctor, tratamientos, la clínica, información práctica y cita; aviso legal y privacidad |
 | **Estado** | Demo terminada · `PUBLIC_IS_DEMO=true` |
 
-## Identidad: "La galería"
+## Identidad: "Odontograma"
 
-La clínica es blanca y minimalista, con luz natural, un cuadro rojo en el box y un suelo de cristal sobre cantos blancos. La web se plantea como una galería:
-- **Fotos:** enmarcadas con passe-partout y una cartela al pie, como en una exposición.
-- **Color:** el rojo del cuadro (`#C01E12`) como único acento, sobre blanco roto y gris tiza.
-- **Tipografía:** Instrument Serif para titulares y Instrument Sans para el texto, autoalojadas.
-
-Esto resuelve también el problema de las fotos, que son pequeñas (650 px): enmarcadas a tamaño moderado se ven intencionadas, no pobres.
+El elemento central es el lenguaje propio de los dentistas: el **odontograma**, el mapa de las 32 piezas con la numeración FDI (11–18, 21–28, 31–38, 41–48).
+- **Tipografía:** Schibsted Grotesk (titulares compactos, sin serifas decorativas) y Spline Sans Mono para números y rótulos. Autoalojadas.
+- **Color:** blanco frío, verde agua `#C9DDD8`/`#2F6F66` sacado del suelo de cristal de la clínica, tinta `#14201E` y el rojo del cuadro del box (`#C01E12`) solo como señal en el odontograma.
+- **Logotipo provisional:** la etiqueta "11·21", los dos incisivos centrales, como placa monoespaciada. A sustituir si la clínica tiene logo.
+- **Fotos:** las de la clínica, a tamaño moderado y con cartela (son de 650 px).
 
 ## Funcionalidades
 
-- **"¿Qué notas?"** (`Guia.astro` + `Boca.astro`):
-  - Eliges un síntoma, un dibujo de la dentadura resalta la zona y se muestra qué especialidad lo trata en la clínica.
-  - El botón "Pedir cita para esto" deja el motivo escrito en el formulario.
-  - Es un radiogroup ARIA que funciona con flechas. Avisa de que es orientativo y de que el diagnóstico lo hace el dentista.
-- **Formulario "que me llamen":** nombre, teléfono, motivo y consentimiento, con validación. En la demo no envía nada y lo dice. En producción, un endpoint de Astro mandará la solicitud al correo de la clínica.
-- **SEO:** JSON-LD `Dentist` con dirección, año de fundación, idiomas, servicios y director; sitemap y Open Graph; `noindex` en modo demo.
+- **Odontograma en la portada** (`Odontograma.astro` + `src/scripts/odontograma.ts`):
+  - Las 32 piezas se dibujan una a una al cargar.
+  - Al pasar el ratón, tocar o enfocar con el teclado una pieza, el lector muestra su número y nombre ("36 · Primer molar inferior izquierdo").
+  - Mientras nadie interactúa, recorre algunas piezas solo. Se detiene con movimiento reducido o al tocarlo.
+- **"¿Qué notas?"** (`Guia.astro`):
+  - El mismo odontograma resalta la zona: molares, incisivos y caninos, encías, la pieza 36 ausente o los dientes de leche.
+  - Muestra qué especialidad lo trata, y "Pedir cita para esto" deja el motivo en el formulario.
+  - Es un radiogroup ARIA que funciona con flechas, con el aviso de que es orientativo.
+- **Formulario "que me llamen":** validado. En la demo no envía nada y lo dice; en producción, un endpoint de Astro mandará la solicitud al correo de la clínica.
+- **SEO:** JSON-LD `Dentist`, sitemap, Open Graph; `noindex` en modo demo.
 
 ## Publicidad sanitaria (lo que se ha respetado)
 
@@ -51,9 +54,9 @@ Esto resuelve también el problema de las fotos, que son pequeñas (650 px): enm
 | | Resultado |
 |---|---|
 | `astro check` / `astro build` | 0 errores · 0 avisos |
-| Lighthouse móvil (producción) | **100 · 100 · 100 · 100** · LCP 1,6 s · 124 KB |
+| Lighthouse móvil (producción) | **99 · 100 · 100 · 100** · LCP 1,7 s · CLS 0 |
 | Lighthouse escritorio | 100 · 100 · 100 · 100 |
-| Pruebas | Guía con ratón y teclado, motivo enviado al formulario, validación, rutas legales, sin scroll horizontal |
+| Pruebas | Odontograma (ratón, teclado, lectura), las 6 zonas de la guía, motivo al formulario, validación, rutas legales, sin scroll horizontal |
 
 ## Ejecutar
 
