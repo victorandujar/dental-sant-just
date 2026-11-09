@@ -9,10 +9,10 @@ export const clinica = {
   postalCode: '08960',
   city: 'Sant Just Desvern',
   region: 'Barcelona',
-  /** Telèfon d'un directori (Topdoctors/DentalQuality): confirmar amb la clínica. */
-  phone: { display: '937 02 04 75', e164: '+34937020475' },
-  /** Número de registre sanitari: obligatori en publicitat sanitària. Pendent. */
-  registreSanitari: null as string | null,
+  /** Telèfon de la fitxa DentalQuality (també a la guia de l'Ajuntament de Barcelona). */
+  phone: { display: '934 73 32 94', e164: '+34934733294' },
+  /** Número de registre sanitari publicat a la fitxa DentalQuality. */
+  registreSanitari: 'E08052070' as string | null,
   google: { rating: '5,0', count: 35 },
   boxes: 4,
   idiomes: ['Castellano', 'Català', 'English'],

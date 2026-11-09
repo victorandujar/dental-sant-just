@@ -35,14 +35,14 @@ El elemento central es el lenguaje propio de los dentistas: el **odontograma**, 
 
 - **Sin testimonios de pacientes:** solo la nota agregada de Google.
 - **Sin precios, promociones ni promesas de resultados.**
-- **Número de registro sanitario:** visible en el pie, pendiente de que lo facilite la clínica.
+- **Número de registro sanitario:** E08052070 (ficha DentalQuality), visible en el pie y en el aviso legal.
 - **Textos prudentes:** orientativos y sin afirmaciones médicas.
 
 ## Fuentes y pendientes
 
 - **Datos y fotos:** ficha pública de la clínica en dentalq.es y Topdoctors.
 - **Pendientes:**
-  - Confirmar el teléfono 937 02 04 75 (lo publica un directorio).
+  - Teléfono 934 73 32 94 (ficha DentalQuality y guía del Ajuntament de Barcelona). Topdoctors publica el 937 02 04 75, probablemente un número de seguimiento.
   - Horario.
   - Email para el formulario.
   - Titular, NIF y nº de registro sanitario.
