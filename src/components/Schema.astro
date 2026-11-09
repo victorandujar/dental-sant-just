@@ -1,0 +1,19 @@
+---
+import { clinica, tratamientos } from '../data/clinica';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  '@id': new URL('/#clinica', Astro.site).href,
+  name: clinica.name,
+  url: Astro.site?.href,
+  image: new URL('/og.png', Astro.site).href,
+  telephone: clinica.phone.e164,
+  foundingDate: String(clinica.since),
+  address: { '@type': 'PostalAddress', streetAddress: clinica.street, postalCode: clinica.postalCode, addressLocality: clinica.city, addressRegion: clinica.region, addressCountry: 'ES' },
+  knowsLanguage: ['es', 'ca', 'en'],
+  medicalSpecialty: 'Dentistry',
+  availableService: tratamientos.map((t) => ({ '@type': 'MedicalProcedure', name: t })),
+  employee: { '@type': 'Person', name: clinica.director.name, jobTitle: clinica.director.cargo },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
