@@ -61,13 +61,13 @@ const arc = (sup: boolean): string => {
 
 <style>
   .odonto svg { overflow: visible; }
-  .odonto .geniva { fill: none; stroke: var(--color-vidre-2); stroke-width: 46; stroke-linecap: round; transition: stroke 400ms; }
+  .odonto .geniva { fill: none; stroke: var(--color-geniva); stroke-width: 46; stroke-linecap: round; transition: stroke 400ms; }
   .odonto .eix { stroke: var(--color-linia); stroke-width: 1; stroke-dasharray: 3 5; }
-  .odonto .quad { font: 500 10px var(--font-mono); fill: var(--color-tinta-2); letter-spacing: 0.08em; }
+  .odonto .quad { font: 600 10px var(--font-sans); fill: var(--color-tinta-2); letter-spacing: 0.08em; }
   .odonto .pieza { cursor: pointer; outline: none; }
-  .odonto .pieza rect { fill: #fff; stroke: var(--color-tinta); stroke-width: 1.4; transition: fill 250ms, stroke 250ms, transform 250ms; }
-  .odonto .pieza .num { font: 500 11px var(--font-mono); fill: var(--color-tinta-2); transition: fill 250ms; }
-  .odonto .pieza:hover rect, .odonto .pieza:focus-visible rect, .odonto .pieza.is-on rect { fill: var(--color-tinta); stroke: var(--color-tinta); }
+  .odonto .pieza rect { fill: #fff; stroke: #7c98a3; stroke-width: 1.4; transition: fill 250ms, stroke 250ms, transform 250ms; }
+  .odonto .pieza .num { font: 600 11px var(--font-sans); fill: var(--color-tinta-2); transition: fill 250ms; }
+  .odonto .pieza:hover rect, .odonto .pieza:focus-visible rect, .odonto .pieza.is-on rect { fill: var(--color-aigua); stroke: var(--color-aigua); }
   .odonto .pieza:hover .num, .odonto .pieza:focus-visible .num, .odonto .pieza.is-on .num { fill: var(--color-tinta); font-weight: 700; }
 
   /* Dibuix inicial, peça a peça */
@@ -89,7 +89,7 @@ const arc = (sup: boolean): string => {
   .odonto [data-zona='infantil'] .pieza.pieza:not([data-pos='6']):not([data-pos='7']):not([data-pos='8']) .num,
   .odonto [data-zona='falta'] [data-fdi='36'].pieza .num { fill: var(--color-vermell); font-weight: 700; }
   .odonto [data-zona='falta'] [data-fdi='36'].pieza rect { fill: #fff; stroke: var(--color-vermell); stroke-width: 2.4; stroke-dasharray: 0.04 0.035; }
-  .odonto [data-zona='encia'] .geniva { stroke: #f0b8b1; }
+  .odonto [data-zona='encia'] .geniva { stroke: #e79a93; }
   .odonto [data-zona='encia'] .pieza rect { stroke: var(--color-tinta-2); }
   @media (prefers-reduced-motion: reduce) {
     .odonto .is-dibuja .pieza rect, .odonto .is-dibuja .pieza .num { animation: none; stroke-dashoffset: 0; fill-opacity: 1; opacity: 1; }

@@ -3,7 +3,7 @@ import Odontograma from './Odontograma.astro';
 import { clinica, telUrl } from '../data/clinica';
 ---
 <section aria-labelledby="hero-t" class="relative overflow-hidden">
-  <div class="quadricula pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] opacity-60 [mask-image:linear-gradient(to_left,#000_55%,transparent)] lg:block" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute right-[-8rem] top-10 hidden h-[44rem] w-[44rem] rounded-full bg-vidre lg:block" aria-hidden="true"></div>
   <div class="relative mx-auto grid max-w-[88rem] items-center gap-10 px-4 pb-24 pt-12 sm:px-8 md:pb-16 lg:grid-cols-12 lg:pt-16">
     <div class="lg:col-span-6">
       <p class="label text-aigua" data-reveal>Clínica dental · Sant Just Desvern · desde {clinica.since}</p>
@@ -23,9 +23,9 @@ import { clinica, telUrl } from '../data/clinica';
       <div class="grid items-center gap-6 sm:grid-cols-[1fr_11rem] lg:grid-cols-[1fr_12rem]">
         <Odontograma id="hero" dibujar class="mx-auto w-full max-w-[17rem] sm:max-w-[25rem]" />
         <!-- Lector: número FDI i nom de la peça -->
-        <div class="border-t border-tinta pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0" data-lectura="hero" aria-live="polite">
+        <div class="border-t border-vidre-2 pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0" data-lectura="hero" aria-live="polite">
           <p class="label text-tinta-2">Pieza</p>
-          <div class="flex items-end gap-5 sm:block"><p class="mono text-[3.5rem] font-semibold leading-none tracking-tight tabular-nums sm:text-[4.5rem]" data-num>—</p>
+          <div class="flex items-end gap-5 sm:block"><p class="text-[3.5rem] font-semibold leading-none tracking-tight text-aigua tabular-nums sm:text-[4.5rem]" data-num>—</p>
           <p class="min-h-[3em] text-[0.95rem] leading-snug sm:mt-3" data-nom>Pasa el ratón o toca un diente.</p></div>
           <p class="label mt-4 text-tinta-2 sm:mt-6">Numeración FDI</p>
         </div>
@@ -33,7 +33,7 @@ import { clinica, telUrl } from '../data/clinica';
     </div>
   </div>
 
-  <dl class="mx-auto grid max-w-[88rem] grid-cols-2 border-y border-linia px-4 sm:px-8 lg:grid-cols-4" data-reveal>
+  <dl class="relative mx-auto grid max-w-[88rem] grid-cols-2 border-y border-linia bg-blanc px-4 sm:px-8 lg:grid-cols-4" data-reveal>
     <div class="border-r border-linia py-6 pr-4"><dt class="label text-tinta-2">Abierta en</dt><dd class="serif mt-1 text-4xl">{clinica.since}</dd></div>
     <div class="py-6 pl-4 lg:border-r lg:border-linia lg:pr-4"><dt class="label text-tinta-2">Boxes con radiología digital</dt><dd class="serif mt-1 text-4xl">{clinica.boxes}</dd></div>
     <div class="border-r border-t border-linia py-6 pr-4 lg:border-t-0 lg:pl-4"><dt class="label text-tinta-2">Google</dt><dd class="serif mt-1 text-4xl">{clinica.google.rating} <span class="font-sans text-sm font-normal text-tinta-2">· {clinica.google.count} reseñas</span></dd></div>

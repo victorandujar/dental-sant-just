@@ -13,7 +13,7 @@ import { telUrl, clinica } from '../data/clinica';
     <div class="mt-12 grid gap-10 lg:grid-cols-12" data-guia>
       <div role="radiogroup" aria-label="¿Qué notas?" class="grid content-start gap-2 lg:col-span-5" data-reveal style="--i:1">
         {sintomas.map((s) => (
-          <button type="button" role="radio" aria-checked="false" data-sintoma={s.id} data-zona={s.zona} class="group flex items-center justify-between gap-4 rounded-md border border-linia bg-white px-5 py-4 text-left text-[1.05rem] transition-colors hover:border-tinta aria-checked:border-tinta aria-checked:bg-tinta aria-checked:text-white">
+          <button type="button" role="radio" aria-checked="false" data-sintoma={s.id} data-zona={s.zona} class="group flex items-center justify-between gap-4 rounded-2xl border border-linia bg-white px-5 py-4 text-left text-[1.05rem] transition-colors hover:border-tinta aria-checked:border-aigua aria-checked:bg-aigua aria-checked:text-white">
             <span>{s.pregunta}</span>
             <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-linia text-xs text-transparent transition-colors group-aria-checked:border-white group-aria-checked:bg-white group-aria-checked:text-tinta" aria-hidden="true">✓</span>
           </button>
@@ -21,11 +21,11 @@ import { telUrl, clinica } from '../data/clinica';
       </div>
 
       <div class="lg:col-span-7" data-reveal style="--i:2">
-        <div class="grid items-center gap-6 border border-linia bg-white p-6 sm:grid-cols-[1fr_12rem] sm:p-8">
+        <div class="grid items-center gap-6 rounded-[28px] bg-white p-6 shadow-[0_30px_60px_-40px_rgb(18_48_59/0.4)] sm:grid-cols-[1fr_12rem] sm:p-8">
           <Odontograma id="guia" class="mx-auto w-full max-w-[20rem]" />
           <div class="border-t border-linia pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0" data-lectura="guia" aria-live="polite">
             <p class="label text-tinta-2">Pieza</p>
-            <p class="mono text-5xl font-semibold leading-none tabular-nums" data-num>—</p>
+            <p class="text-5xl font-semibold leading-none text-aigua tabular-nums" data-num>—</p>
             <p class="mt-2 text-sm leading-snug" data-nom>Toca un diente para ver su nombre.</p>
           </div>
         </div>

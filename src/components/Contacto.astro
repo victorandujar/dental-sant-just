@@ -1,28 +1,28 @@
 ---
 import { clinica, telUrl, mapsUrl } from '../data/clinica';
-const field = 'mt-2 w-full border-0 border-b border-blanc/35 bg-transparent px-0 py-3 text-lg text-blanc placeholder:text-blanc/35 focus:border-[#ff8a7f] focus:outline-none focus:ring-0 aria-[invalid=true]:border-[#ff8a7f]';
+const field = 'mt-2 w-full rounded-xl border border-linia bg-white px-4 py-3 text-lg text-tinta placeholder:text-tinta-2/50 focus:border-aigua focus:outline-none focus:ring-0 aria-[invalid=true]:border-[#b42318]';
 ---
-<section id="contacto" aria-labelledby="contacto-t" class="bg-tinta text-blanc">
+<section id="contacto" aria-labelledby="contacto-t" class="bg-vidre text-tinta">
   <div class="mx-auto grid max-w-[88rem] gap-16 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
     <div class="lg:col-span-5">
       <h2 id="contacto-t" class="serif text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal>Pide cita</h2>
-      <p class="mt-5 max-w-sm text-lg text-blanc/75" data-reveal style="--i:1">La forma más rápida es llamar. Si lo prefieres, déjanos tus datos y te llamamos nosotros.</p>
-      <a href={telUrl} class="serif mt-10 inline-block text-[clamp(2.6rem,5vw,3.8rem)] tabular-nums hover:text-vidre-2" data-reveal style="--i:2">{clinica.phone.display}</a>
-      <dl class="mt-10 grid gap-6 border-t border-blanc/15 pt-8" data-reveal style="--i:3">
-        <div><dt class="label text-blanc/60">Dirección</dt><dd class="mt-1">{clinica.street}<br />{clinica.postalCode} {clinica.city} · <a href={mapsUrl} rel="noopener" target="_blank" class="underline underline-offset-4 hover:text-vidre-2">Cómo llegar</a></dd></div>
+      <p class="mt-5 max-w-sm text-lg text-tinta-2" data-reveal style="--i:1">La forma más rápida es llamar. Si lo prefieres, déjanos tus datos y te llamamos nosotros.</p>
+      <a href={telUrl} class="serif mt-10 inline-block text-[clamp(2.6rem,5vw,3.8rem)] tabular-nums text-aigua hover:text-aigua" data-reveal style="--i:2">{clinica.phone.display}</a>
+      <dl class="mt-10 grid gap-6 border-t border-linia pt-8" data-reveal style="--i:3">
+        <div><dt class="label text-tinta-2">Dirección</dt><dd class="mt-1">{clinica.street}<br />{clinica.postalCode} {clinica.city} · <a href={mapsUrl} rel="noopener" target="_blank" class="underline underline-offset-4 hover:text-aigua">Cómo llegar</a></dd></div>
       </dl>
     </div>
 
-    <form id="cita" class="grid content-start gap-6 lg:col-span-6 lg:col-start-7" novalidate data-reveal style="--i:1">
+    <form id="cita" class="grid content-start gap-6 rounded-[28px] bg-white p-6 shadow-[0_30px_60px_-40px_rgb(18_48_59/0.4)] sm:p-9 lg:col-span-6 lg:col-start-7" novalidate data-reveal style="--i:1">
       <div class="grid gap-6 sm:grid-cols-2">
-        <div><label for="nombre" class="label text-blanc/60">Nombre</label><input id="nombre" name="nombre" autocomplete="name" maxlength="80" class={field} aria-describedby="err-nombre" /><p id="err-nombre" class="mt-1 min-h-5 text-sm text-[#ff8a7f]" aria-live="polite"></p></div>
-        <div><label for="telefono" class="label text-blanc/60">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" class={field} aria-describedby="err-telefono" /><p id="err-telefono" class="mt-1 min-h-5 text-sm text-[#ff8a7f]" aria-live="polite"></p></div>
+        <div><label for="nombre" class="label text-tinta-2">Nombre</label><input id="nombre" name="nombre" autocomplete="name" maxlength="80" class={field} aria-describedby="err-nombre" /><p id="err-nombre" class="mt-1 min-h-5 text-sm text-[#b42318]" aria-live="polite"></p></div>
+        <div><label for="telefono" class="label text-tinta-2">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" class={field} aria-describedby="err-telefono" /><p id="err-telefono" class="mt-1 min-h-5 text-sm text-[#b42318]" aria-live="polite"></p></div>
       </div>
-      <div><label for="motivo" class="label text-blanc/60">Motivo <span class="text-blanc/40">(opcional)</span></label><textarea id="motivo" name="motivo" rows="3" maxlength="500" placeholder="Revisión, una molestia, segunda opinión…" class:list={[field, 'resize-y']}></textarea></div>
-      <label class="flex items-start gap-3 text-sm text-blanc/75"><input type="checkbox" name="acepto" class="mt-1 h-4 w-4 accent-[#c01e12]" aria-describedby="err-acepto" /><span>Acepto que la clínica use estos datos solo para llamarme y darme cita. <a href="/privacidad" class="underline underline-offset-2">Privacidad</a></span></label>
-      <p id="err-acepto" class="-mt-4 min-h-5 text-sm text-[#ff8a7f]" aria-live="polite"></p>
-      <div><button type="submit" class="btn bg-blanc text-tinta hover:bg-vidre">Quiero que me llamen</button></div>
-      <p class="hidden border-l-2 border-vidre-2 pl-4 text-blanc/85" data-ok role="status"></p>
+      <div><label for="motivo" class="label text-tinta-2">Motivo <span class="text-tinta-2/70">(opcional)</span></label><textarea id="motivo" name="motivo" rows="3" maxlength="500" placeholder="Revisión, una molestia, segunda opinión…" class:list={[field, 'resize-y']}></textarea></div>
+      <label class="flex items-start gap-3 text-sm text-tinta-2"><input type="checkbox" name="acepto" class="mt-1 h-4 w-4 accent-[#0f6b85]" aria-describedby="err-acepto" /><span>Acepto que la clínica use estos datos solo para llamarme y darme cita. <a href="/privacidad" class="underline underline-offset-2">Privacidad</a></span></label>
+      <p id="err-acepto" class="-mt-4 min-h-5 text-sm text-[#b42318]" aria-live="polite"></p>
+      <div><button type="submit" class="btn btn-vermell">Quiero que me llamen</button></div>
+      <p class="hidden border-l-2 border-aigua pl-4 text-tinta" data-ok role="status"></p>
     </form>
   </div>
 </section>

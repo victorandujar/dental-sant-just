@@ -12,9 +12,10 @@
 ## Identidad: "Odontograma"
 
 El elemento central es el lenguaje propio de los dentistas: el **odontograma**, el mapa de las 32 piezas con la numeración FDI (11–18, 21–28, 31–38, 41–48).
-- **Tipografía:** Schibsted Grotesk (titulares compactos, sin serifas decorativas) y Spline Sans Mono para números y rótulos. Autoalojadas.
-- **Color:** blanco frío, verde agua `#C9DDD8`/`#2F6F66` sacado del suelo de cristal de la clínica, tinta `#14201E` y el rojo del cuadro del box (`#C01E12`) solo como señal en el odontograma.
-- **Logotipo provisional:** la etiqueta "11·21", los dos incisivos centrales, como placa monoespaciada. A sustituir si la clínica tiene logo.
+- **Tipografía:** Schibsted Grotesk para todo (titulares, texto y rótulos), autoalojada.
+- **Formas:** botones redondeados, tarjetas y fotos con esquinas suaves, y secciones claras, para que el conjunto se vea limpio y tranquilo.
+- **Color:** paleta clínica y luminosa: blanco `#F9FCFD`, agua clara `#E8F4F7`, azul principal `#0F6B85` (cumple AA con blanco) y texto en azul tinta `#12303B`. Las encías del odontograma en rosa real `#F4D5D2`. Sin rojo, que en salud evoca sangre o alarma. La clínica no tiene colores de marca publicados.
+- **Logotipo provisional:** la etiqueta "11·21" (los dos incisivos centrales) en una píldora azul. A sustituir si la clínica tiene logo.
 - **Fotos:** las de la clínica, a tamaño moderado y con cartela (son de 650 px).
 
 ## Funcionalidades

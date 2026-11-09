@@ -2,10 +2,10 @@
 import { clinica } from '../data/clinica';
 import { isDemo } from '../lib/site';
 ---
-<footer class="border-t border-blanc/10 bg-tinta pb-24 text-blanc/70 md:pb-0">
+<footer class="border-t border-blanc/10 bg-[#0b3442] pb-24 text-blanc/75 md:pb-0">
   <div class="mx-auto flex max-w-[88rem] flex-wrap items-end justify-between gap-8 px-4 py-12 sm:px-8">
     <div>
-      <p class="text-2xl font-semibold tracking-tight text-blanc"><span class="mono mr-3 rounded-[3px] bg-blanc px-1.5 py-0.5 align-middle text-[0.8rem] text-tinta">11·21</span>Dental Clinic Sant Just</p>
+      <p class="text-2xl font-semibold tracking-tight text-blanc"><span class="mr-3 rounded-full bg-blanc px-2.5 py-1 align-middle text-[0.8rem] font-semibold text-aigua">11·21</span>Dental Clinic Sant Just</p>
       <p class="mt-2 text-sm">{clinica.street}, {clinica.postalCode} {clinica.city}</p>
       <p class="mt-1 text-sm">Nº de registro sanitario: {clinica.registreSanitari ?? <mark class="bg-blanc/15 px-1 text-blanc">pendiente</mark>}</p>
     </div>
