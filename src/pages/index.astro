@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Guia from '../components/Guia.astro';
+import Doctor from '../components/Doctor.astro';
+import Tratamientos from '../components/Tratamientos.astro';
+import Clinica from '../components/Clinica.astro';
+import Info from '../components/Info.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+---
+<Base
+  title="Dental Clinic Sant Just · Dentista en Sant Just Desvern desde 1990"
+  description="Clínica dental en Sant Just Desvern (Carrer Marquès de Monistrol, 5). Dr. Carles Gargallo. Implantes, ortodoncia, estética dental, periodoncia y odontopediatría. Tel. 937 02 04 75."
+  schema
+>
+  <Header />
+  <main id="contenido">
+    <Hero />
+    <Guia />
+    <Doctor />
+    <Tratamientos />
+    <Clinica />
+    <Info />
+    <Contacto />
+  </main>
+  <Footer />
+  <MobileBar />
+</Base>

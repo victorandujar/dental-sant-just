@@ -1,0 +1,13 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { clinica } from '../data/clinica';
+---
+<Legal title="Privacidad · Dental Clinic Sant Just" heading="Privacidad">
+  <h2>Formulario de cita</h2>
+  <p>Los datos del formulario (nombre, teléfono y motivo) se usan solo para llamarte y darte cita. No se ceden a terceros ni se usan para publicidad.</p>
+  <h2>Cookies</h2>
+  <p>Este sitio no usa cookies de analítica ni de publicidad.</p>
+  <h2>Responsable y derechos</h2>
+  <p>{clinica.name}, {clinica.street}, {clinica.city}. Puedes ejercer tus derechos llamando al {clinica.phone.display}.</p>
+  <p class="text-sm text-tinta-2">Documento provisional: se revisa con la clínica antes de publicar.</p>
+</Legal>

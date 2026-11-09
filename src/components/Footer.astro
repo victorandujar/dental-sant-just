@@ -1,0 +1,15 @@
+---
+import { clinica } from '../data/clinica';
+import { isDemo } from '../lib/site';
+---
+<footer class="border-t border-blanc/10 bg-tinta pb-24 text-blanc/70 md:pb-0">
+  <div class="mx-auto flex max-w-[88rem] flex-wrap items-end justify-between gap-8 px-4 py-12 sm:px-8">
+    <div>
+      <p class="serif text-3xl text-blanc"><span class="mr-3 inline-block h-3 w-3 bg-vermell align-middle"></span>Dental Clinic <em>Sant Just</em></p>
+      <p class="mt-2 text-sm">{clinica.street}, {clinica.postalCode} {clinica.city}</p>
+      <p class="mt-1 text-sm">Nº de registro sanitario: {clinica.registreSanitari ?? <mark class="bg-blanc/15 px-1 text-blanc">pendiente</mark>}</p>
+    </div>
+    <nav aria-label="Legal" class="flex gap-6 text-sm"><a href="/aviso-legal" class="hover:text-blanc">Aviso legal</a><a href="/privacidad" class="hover:text-blanc">Privacidad</a></nav>
+  </div>
+  <p class="label mx-auto flex max-w-[88rem] flex-wrap justify-between gap-4 border-t border-blanc/10 px-4 py-6 text-[0.65rem] sm:px-8"><span>© {new Date().getFullYear()} {clinica.name}</span>{isDemo && <span>Propuesta no oficial · Web Local Growth</span>}</p>
+</footer>
