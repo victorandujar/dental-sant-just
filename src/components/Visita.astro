@@ -1,0 +1,49 @@
+---
+import { clinica, mapsUrl } from '../data/clinica';
+const passos = [
+  { t: 'Pides cita', d: `Por teléfono al ${clinica.phone.display} o con el formulario de esta página.` },
+  { t: 'Revisión', d: 'Exploración y, si hace falta, radiografía digital en la misma clínica.' },
+  { t: 'Tu plan', d: 'Te explicamos las opciones de tratamiento y su presupuesto antes de empezar.' },
+];
+const faq = [
+  { q: '¿Trabajáis con mi mutua?', a: `La clínica trabaja con ${clinica.mutues.join(', ')}. Si la tuya no aparece, pregúntalo al pedir cita.` },
+  { q: '¿Tengo que ir a otro centro para las radiografías?', a: 'No. Los boxes tienen radiología digital y las pruebas se hacen en la propia clínica.' },
+  { q: '¿Atendéis a niños?', a: 'Sí. La odontopediatría es una de las especialidades de la clínica.' },
+  { q: '¿En qué idiomas atendéis?', a: `${clinica.idiomes.join(', ')}.` },
+  { q: '¿Dónde estáis?', a: `En el ${clinica.street}, ${clinica.postalCode} ${clinica.city}.` },
+];
+---
+<section id="visita" aria-labelledby="visita-t" class="bg-blanc">
+  <div class="mx-auto max-w-[88rem] px-4 py-20 sm:px-8 sm:py-28">
+    <p class="label text-aigua" data-reveal>Primera visita</p>
+    <h2 id="visita-t" class="serif mt-4 max-w-3xl text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">Así es tu primera visita.</h2>
+    <ol class="relative mt-14 grid gap-5 md:grid-cols-3">
+      <span class="absolute left-[16%] right-[16%] top-9 hidden h-0.5 bg-[linear-gradient(90deg,var(--color-vidre-2)_50%,transparent_0)] bg-[length:14px_2px] md:block" aria-hidden="true"></span>
+      {passos.map((p, i) => (
+        <li class="relative text-center" data-reveal style={`--i:${i}`}>
+          <span class="relative mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full bg-aigua text-2xl font-semibold text-white shadow-[0_0_0_10px_var(--color-blanc),0_18px_30px_-12px_rgb(15_107_133/0.6)]">{i + 1}</span>
+          <h3 class="mt-6 text-2xl font-semibold tracking-tight">{p.t}</h3>
+          <p class="mx-auto mt-2 max-w-xs text-tinta-2">{p.d}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="mt-24 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h3 class="serif text-4xl" data-reveal>Preguntas frecuentes</h3>
+        <a href={mapsUrl} target="_blank" rel="noopener" class="btn btn-line mt-6" data-reveal style="--i:1">Cómo llegar</a>
+      </div>
+      <div class="grid gap-3 lg:col-span-8">
+        {faq.map((f, i) => (
+          <details class="group carta px-6 py-1 open:pb-5" data-reveal style={`--i:${i}`}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-vidre text-aigua transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-2xl text-tinta-2">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

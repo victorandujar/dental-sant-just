@@ -4,23 +4,29 @@ import retrat from '../assets/clinica/dr-gargallo.jpg';
 import { clinica } from '../data/clinica';
 const d = clinica.director;
 ---
-<section id="doctor" aria-labelledby="doctor-t">
-  <div class="mx-auto grid max-w-[88rem] items-start gap-14 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
-    <figure class="lg:col-span-4" data-reveal>
-      <div class="marc max-w-sm">
-        <Image src={retrat} alt={`${d.name}, director de la clínica`} widths={[320, 480, 650]} sizes="(min-width: 1024px) 24rem, 80vw" class="aspect-[4/5] w-full object-cover object-[70%_30%]" loading="lazy" />
+<section id="doctor" aria-labelledby="doctor-t" class="overflow-hidden">
+  <div class="mx-auto grid max-w-[88rem] items-center gap-16 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
+    <figure class="relative mx-auto w-full max-w-md lg:col-span-5" data-reveal>
+      <div class="absolute -inset-6 -z-10 rounded-[48px] bg-vidre" aria-hidden="true"></div>
+      <div class="absolute -bottom-10 -left-10 -z-10 h-48 w-48 rounded-full bg-geniva/70" aria-hidden="true"></div>
+      <div class="overflow-hidden rounded-[32px] shadow-[0_40px_80px_-40px_rgb(18_48_59/0.55)]">
+        <Image src={retrat} alt={`${d.name}, director de la clínica`} widths={[320, 480, 650]} sizes="(min-width: 1024px) 28rem, 86vw" class="aspect-[4/5] w-full object-cover object-[70%_30%]" loading="lazy" />
       </div>
-      <figcaption class="cartela mt-4 max-w-sm"><strong class="font-semibold text-tinta">{d.name}</strong><br />{d.cargo} · Nº de colegiado {d.colegiado}</figcaption>
+      <figcaption class="carta flota absolute -bottom-6 right-4 px-5 py-4 sm:-right-8">
+        <strong class="block font-semibold">{d.name}</strong>
+        <span class="text-sm text-tinta-2">{d.cargo}</span>
+      </figcaption>
+      <p class="carta flota-2 absolute -left-3 top-8 px-4 py-3 text-sm font-semibold text-aigua sm:-left-10">Colegiado {d.colegiado}</p>
     </figure>
-    <div class="lg:col-span-7 lg:col-start-6">
+    <div class="lg:col-span-6 lg:col-start-7">
       <p class="label text-aigua" data-reveal>El doctor</p>
-      <h2 id="doctor-t" class="serif mt-5 text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">El doctor que dirige la clínica.</h2>
+      <h2 id="doctor-t" class="serif mt-5 text-[clamp(2.6rem,5.5vw,4.5rem)]" data-reveal style="--i:1">Te atiende quien dirige la clínica.</h2>
       <p class="mt-6 max-w-xl text-lg text-tinta-2" data-reveal style="--i:2">El Dr. Gargallo tiene formación en varias especialidades de la odontología, con especial dedicación a la estética dental, los implantes y la cirugía de las encías. Atiende en castellano, catalán e inglés.</p>
-      <ol class="mt-10 border-t border-linia">
+      <ol class="relative mt-10 grid gap-3 before:absolute before:bottom-4 before:left-[1.2rem] before:top-4 before:w-px before:bg-vidre-2">
         {d.formacion.map((f, i) => (
-          <li class="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-linia py-4" data-reveal style={`--i:${i}`}>
-            <span class="serif text-xl text-aigua">{String(i + 1).padStart(2, '0')}</span>
-            <span>{f}</span>
+          <li class="relative grid grid-cols-[2.4rem_1fr] items-center gap-4" data-reveal style={`--i:${i}`}>
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-white text-sm font-semibold text-aigua ring-1 ring-vidre-2">{String(i + 1).padStart(2, '0')}</span>
+            <span class="rounded-2xl bg-blanc px-5 py-3 ring-1 ring-linia">{f}</span>
           </li>
         ))}
       </ol>

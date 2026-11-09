@@ -1,0 +1,44 @@
+---
+import { clinica } from '../data/clinica';
+const anys = new Date().getFullYear() - clinica.since;
+const xifres = [
+  { n: anys, pre: '', suf: '', t: 'años en Sant Just', d: `Abierta desde ${clinica.since} en Marquès de Monistrol.` },
+  { n: clinica.boxes, pre: '', suf: '', t: 'boxes de tratamiento', d: 'Todos con radiología digital.' },
+  { n: 5, pre: '', suf: ',0', t: 'en Google', d: `Con ${clinica.google.count} reseñas de pacientes.` },
+  { n: clinica.idiomes.length, pre: '', suf: '', t: 'idiomas', d: clinica.idiomes.join(', ') + '.' },
+];
+---
+<section aria-label="La clínica en cifras" class="bg-blanc">
+  <dl class="mx-auto grid max-w-[88rem] grid-cols-2 gap-px overflow-hidden px-4 py-16 sm:px-8 lg:grid-cols-4 lg:py-20">
+    {xifres.map((x, i) => (
+      <div class="flex flex-col border-l border-linia py-2 pl-5 sm:pl-8" data-reveal style={`--i:${i}`}>
+        <dt class="order-2 mt-2 font-semibold text-tinta">{x.t}<span class="mt-1 block text-sm font-normal text-tinta-2">{x.d}</span></dt>
+        <dd class="order-1 text-[clamp(3.4rem,8vw,6.5rem)] font-semibold leading-none tracking-[-0.05em] text-aigua">{x.pre}<span class="tabular-nums" data-compta={x.n}>{x.n}</span>{x.suf}</dd>
+      </div>
+    ))}
+  </dl>
+</section>
+
+<script>
+  const els = document.querySelectorAll<HTMLElement>('[data-compta]');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        const el = e.target as HTMLElement;
+        const fi = Number(el.dataset.compta);
+        const t0 = performance.now();
+        const pas = (t: number) => {
+          const p = Math.min(1, (t - t0) / 1400);
+          el.textContent = String(Math.round(fi * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(pas);
+        };
+        el.textContent = '0';
+        requestAnimationFrame(pas);
+      }
+    }, { threshold: 0.6 });
+    els.forEach((el) => io.observe(el));
+  }
+</script>
